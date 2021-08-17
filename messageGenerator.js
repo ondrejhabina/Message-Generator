@@ -41,45 +41,36 @@ const messageGen = {
         let adjIndex = Math.floor(Math.random() * this.adjectives.length);
         return this.adjectives[adjIndex];
     },
-    //method to determine a comment based on what god was selected to speak 
-    commentGen() {
-        let comment = '';
-        if (this.godGen() == 'Odin') {
-            comment = 'You life will be touched by wisdom.';
-            return comment;
-        } else if (this.godGen() == 'Freya') {
-            comment = 'Look out for love and lust.';
-            return comment;
-        } else if (this.godGen() == 'Thor') {
-            comment = 'Try and be slower to anger.';
-            return comment;
-        } else if (this.godGen() == 'Loki') {
-            comment = 'Watch. Your. Every. Step.';
-            return comment;
-        } else if (this.godGen() == 'Balder') {
-            comment = 'Dont let your vanity lead to your doom.';
-            return comment;
-        } else if (this.godGen() == 'Hod') {
-            comment = 'Trust only those who earn it.';
-            return comment;
-        } else if (this.godGen() == 'Heimdall') {
-            comment = 'Your eyesight is unrivaled.';
-            return comment;
-        } else if (this.godGen() == 'Tyr') {
-            comment = 'Offence is the best defense';
-            return comment;
-        } else {
-            comment = 'Something went wrong';
-            return comment;
-        }
-    },
     //putting the message together
     genMessage() {
         let god = this.godGen();
         let verb = this.verbGen();
         let phrase = this.phraseGen();
-        let adj = this.adjectiveGen();
-        let comment = this.commentGen();
+        let adj = this.adjectiveGen();     
+        function commentGen() { //function to determine the final comment
+            let comment = '';
+            if (god == 'Odin') {
+                comment = 'You life will be touched by wisdom.';
+            } else if (god == 'Freya') {
+                comment = 'Look out for love and lust.';
+            } else if (god == 'Thor') {
+                comment = 'Try and be slower to anger.';
+            } else if (god == 'Loki') {
+                comment = 'Watch. Your. Every. Step.';
+            } else if (god == 'Balder') {
+                comment = 'Dont let your vanity lead to your doom.';
+            } else if (god == 'Hod') {
+                comment = 'Trust only those who earn it.';
+            } else if (god == 'Heimdall') {
+                comment = 'Your eyesight is unrivaled.';
+            } else if (god == 'Tyr') {
+                comment = 'Offence is the best defense'; //node messageGenerator.js
+            } else {
+                comment = 'Something went wrong';
+            }
+            return comment;
+        }
+        let comment = commentGen();
         let message = `Oracles says this: ${god} ` + `${verb} `+ `${phrase}, `+ `${adj}. `+ `${comment}`;
         return message;
     }
